@@ -1,0 +1,380 @@
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the search field */
+form.example input[type=text] {
+  position: relative;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  width: 15%;
+  background: #f1f1f1;
+  float: right;
+  position: absolute;
+  right: 80px;
+  top: 5px;
+}
+
+/* Style the submit button */
+form.example button {
+  position: absolute;
+  float: right;
+  width: 5%;
+  padding: 10px;
+  background:black;
+  color: white;
+  font-size: 17px;
+  border: 1px solid black;
+  /* Prevent double borders */
+  cursor: pointer;
+  height: 47px;
+  position: absolute;
+  right: 16px;
+  top: 5px;
+}
+
+form.example button:hover {
+  position: absolute;
+  background: white;
+  color: black;
+
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.card-body {
+    text-indent: 30px;
+}
+    input[id="menuicon"]:checked ~ .container .sidebar {
+        left:0;
+    
+    }
+    input[id="menuicon"]:checked + label {
+        z-index:2000;
+        margin-left: 200px;
+        position: fixed;
+        top: 10px;
+    }
+    input[id="menuicon"]:checked + label span:nth-child(1) {top:50%;transform:translateY(-50%) rotate(45deg);}
+    input[id="menuicon"]:checked + label span:nth-child(2) {opacity:0;}
+    input[id="menuicon"]:checked + label span:nth-child(3) {bottom: 50%; transform:translateY(50%) rotate(-45deg);}
+    input[id="menuicon"] + label {
+        display:block;
+        width: 60px;
+        height: 40px;
+        cursor: pointer;
+        position: absolute;
+        left:10px;
+        
+   
+        
+    }
+    input[id="menuicon"] + label span {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        border-radius: 30px;
+        background: #000;
+        transition: all .35s;
+    }
+    input[id="menuicon"] + label span:nth-child(1) {top: 0;}
+    input[id="menuicon"] + label span:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    input[id="menuicon"] + label span:nth-child(3) {bottom: 0;}
+    .container {width:100%;position:relative;}  
+    .sidebar {position:fixed;top:0;left:-300px;width:300px;height:100%;background:white;border:1px solid white;z-index:10000;transition:.35s;}
+    .accordion {
+        background-color:white;
+        color:black;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        text-align: left;
+        border: black;
+        outline: none;
+        transition: 0.4s;}
+      
+    
+    
+            
+            .accordion {
+              background-color: white;
+              color: black;
+              cursor: pointer;
+              padding: 18px;
+              width: 100%;
+              text-align: left;
+              border: none;
+              outline: none;
+              transition: 0.4s;
+            }
+            
+            /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+            .active, .accordion:hover {
+              background-color: #ccc;
+            }
+            
+            /* Style the accordion panel. Note: hidden by default */
+            .panel {
+              padding: 0 18px;
+              background-color: white;
+              display: none;
+              overflow: hidden;
+            }
+    </style>
+    
+        
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Bluesky Template-->
+<link rel="stylesheet" type="text/css" href="{% static 'bluesky/styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'bluesky/plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bluesky/plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bluesky/plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bluesky/styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'bluesky/styles/responsive.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>V R O</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preload-content">
+            <div id="original-load"></div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="login-area">
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" style="margin-top: 0px; margin-bottom: 0px; margin-left: 460px; margin-right: 0px;" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="modal-body">
+                        <h5 class="title">Log in</h5>
+                        <form action="{% url 'login' %}" class="loginform" method="POST">
+                            <br>
+                            {% csrf_token %}
+                            ID <input name = "username" type="text" value="" style="float: right;">
+                            <br>
+                            <br>
+                            PASSWORD <input name = "password" type="password" value="" style="float: right;">
+                            <br>
+                            <br>
+                            <button type="submit" class="btn original-btn" style="background-color: white;">Log in</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="login-area">
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" style="margin-top: 0px; margin-bottom: 0px; margin-left: 460px; margin-right: 0px;" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="modal-body">
+                        <h5 class="title">Sign Up</h5>
+                        <form action="{% url 'signup' %}" class="signupform" method="POST">
+                            <br>
+                            {% csrf_token %}
+                            ID <input name = "username" type="text" value="" style="float: right;">
+                            <br>
+                            <br>
+                            Password  
+                            <input name="password1" type="password" value="" style="float: right;">
+                            <br>
+                            <br>
+                            Confrim Password 
+                            <input name="password2" type="password" value="" style="float: right;">
+                            <br>
+                            <br>
+                            <button type="submit" class="btn original-btn" style="background-color: white;">sign up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header" style="height: 58px">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <!-- Subscribe btn -->
+                    {% if user.is_authenticated %}
+                    <div class="subscribe-btn" style="left: 900px;">
+                        <a href="/logout" class="btn subscribe-btn">Log out</a>
+                    </div>
+                    {% else %}
+                    <div class="subscribe-btn" style="left: 890px;">
+                        <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#signupModal">Sign up</a>
+                    </div>
+                    <div class="subscribe-btn" style="left: 900px;">
+                        <a href="#" class="btn subscribe-btn" data-toggle="modal" data-target="#loginModal">Log in</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    
+
+        <!-- Logo Area -->
+        <div class="logo-area text-center">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <a href="{% url 'home' %}" class="original-logo"><img src="{% static 'img/core-img/logo3.png' %}" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="original-nav-area" id="stickyNav" style="height:58px; border-bottom: 1px solid #e1e1e1;">
+            <!-- Navbar Toggler -->
+
+                    <input type="checkbox" id="menuicon" style="display: none;">
+                        <label for="menuicon" style="left:100px; top:9px;">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </label>
+            <!-- Menu -->
+            <div class="container">
+                <div class="sidebar" style="overflow:auto;">
+                    <button class="accordion" type="button" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample"><a href="#a"><strong>VRO</strong></a></button>
+                        <div class="collapse" id="collapseExample1">
+                            <div class="card card-body"><a href="{% url 'about' %}">ABOUTUS</a></div>
+                            <div class="card card-body"><a href="{% url 'collection' %}">COLLECTION</a></div>
+                        </div>
+                    <button class="accordion" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample"><a href="#a"><strong>CATEGORY</strong></a></button>
+                        <div class="collapse" id="collapseExample2">
+                            <div class="card card-body"><a href="{% url 'OUTER' %}">OUTER</a></div>
+                            <div class="card card-body"><a href="{% url 'top' %}">TOP</a></div>
+                            <div class="card card-body"><a href="{% url 'BOTTOM' %}">BOTTOM</a></div>
+                            <div class="card card-body"><a href="{% url 'SHOES' %}">SHOES</a></div>
+                            <div class="card card-body"><a href="{% url 'ACC' %}">ACC</a></div>
+                        </div>
+                    <button class="accordion" type="button" data-toggle="collapse" data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample"><a href="#a"><strong>COMMUNITY</strong></a></button>
+                        <div class="collapse" id="collapseExample3">
+                            <div class="card card-body"><a href="{% url 'notice' %}">NOTICE</a></div>
+                            <div class="card card-body"><a href="{% url 'qna' %}">Q&A</a></div>                           
+                        </div>
+                    <button class="accordion" id="forstoremap"><a href="{% url 'map' %}"><strong>STOREMAP</strong></a></button>
+                </div>
+            </div>
+            <!-- Load icon library -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+            <!-- The form -->
+                <form class="example" action="action_page.php">
+                    <input type="text" placeholder="Search.." name="search" style="left:1113px;">
+                    <button type="submit" style="left:1350px;"><i class="fa fa-search"></i></button>
+                </form>    
+           
+            <!--<div id="search-wrapper" style="left: 1350px; top: 10px;">
+                    <form action="#">
+                        <input type="text" id="search" placeholder="검색어를 입력하세요">
+                        <div id="close-icon"></div>
+                        <input class="d-none" type="submit" value="">
+                    </form>
+            </div>     -->
+        </div>
+    
+    </header>
+        <!-- Classy Menu -->
+ 
+
+                  
+
+
+    <!-- ##### Header Area End ##### -->
+
+    
+    {% block content %}
+
+    {% endblock %}
+    
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">                    
+                    <!-- Footer Social Area -->
+                    <div class="footer-social-area mt-30">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.instagram.com/vro_veryrareonly/" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>  <!-- 여기 좀 고칠까 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+
+
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+
+    <!-- Bluesky js-->
+    <script src="{% static 'bluesky/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'bluesky/styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'bluesky/styles/bootstrap4/bootstrap-custom.js' %}"></script>
+    <script src="{% static 'bluesky/plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'bluesky/plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'bluesky/plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'bluesky/js/custom.js' %}"></script>
+    <script>
+        $(document).on('click','#forstoremap',function(){
+            $(location).attr('href', '{% url "map" %}');
+        });
+
+    </script>
+</body>
+
+</html>

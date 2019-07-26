@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content%}
+  
+        <div class="container" style="top: 15px;">
+                <table class="table table-striped">
+                        <h4><a href="#" class="post-headline" style="color: black; font-size: 30px">Notice</a></h4>
+                        <thead>
+                            <tr>
+                                
+                                <th>제목</th>
+                                <th>내용</th>
+                                
+                                <th>날짜</th>
+                                
+                            </tr>
+                        </thead>
+                        {% for blog in notices.all %}
+                        <tbody>
+                            
+                            <tr>
+                                <td><p style="color: black; font-size:17px;">{{ blog.title }}</p></td>
+                                <td><p style="color: black; font-size:17px;">{{ blog.summary }}<a href="{% url 'detail' blog.id %}">...more</p></td>
+                                
+                                <td><p style="color: black; font-size:17px; width: 197px;">{{ blog.pub_date }}</p></td>
+                            </tr>
+                            
+                        </tbody>
+                        {% endfor %}
+                    </table>
+
+
+    <!-- ##### Blog Wrapper End ##### -->
+
+{% endblock %}
+
+
+ 

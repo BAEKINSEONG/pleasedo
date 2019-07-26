@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content%}
+
+    <!-- ##### Blog Wrapper Start ##### -->
+        <div class="container jumbotron">
+            <h1>{{ qna.title }}</h1>
+            <p>{{ qna.pub_date }}</p>
+            <p>{{ qna.body }}</p>
+            <p>{{ qna.text }}</p>
+            <a href="{% url 'qna' %}">돌아가기</a>
+        </div>
+{% endblock %}

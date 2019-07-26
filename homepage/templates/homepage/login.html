@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+    {% block content%}
+    <div class="container text-left">
+        <br>
+        <h3>Log in</h3>
+        <br>
+    
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <br>
+            ID : 
+            <input name="username" type="text" value="">
+            <br>
+            <br>
+            PASSWORD : 
+            <input name="password" type="password" value="">
+            <br>
+            <br>
+            <input class="btn btn-primary" type="submit" value="로그인하기!">
+            <br>
+        </form>
+    </div>
+    {% endblock %}

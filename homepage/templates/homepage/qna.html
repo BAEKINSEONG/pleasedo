@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content%}
+
+
+
+    <div class="container" style="top: 15px;">
+        <table class="table table-striped">
+                <h4><a href="#" class="post-headline" style="color: black; font-size: 30px">Q&A</a></h4>
+                <thead>
+                    <tr>
+                        
+                        <th>제목</th>
+                        <th>내용</th>
+                        <th>작성자</th>
+                        <th>날짜</th>
+                        
+                    </tr>
+                </thead>
+                {% for qna in questions.all %}
+                <tbody>
+                    
+                    <tr>
+                        <td><p style="color: black; font-size:17px;">{{ qna.title }}</p></td>
+                        <td><p style="color: black; font-size:17px;">{{ qna.summary }}<a href="{% url 'detail' qna.id %}">...more</p></td>
+                        <td><p style="color: black; font-size:17px;">홍용기</p></td>
+                        <td><p style="color: black; font-size:17px; width: 197px;">{{ qna.pub_date }}</p></td>
+                    </tr>
+                    
+                </tbody>
+                {% endfor %}
+            </table>
+            <a href="{% url 'new' %}">글쓰기</a>
+            
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content%}
+
+    <!-- ##### Blog Wrapper Start ##### -->
+    <div class="container jumbotron">
+        <h1>{{ notice.title }}</h1>
+        <p>{{ notice.body }}</p>
+       
+        <p>{{ notice.pub_date }}</p>
+        
+        
+        <a href="{% url 'notice' %}">돌아가기</a>
+    </div>
+    <!-- ##### Blog Wrapper End ##### -->
+
+{% endblock %}

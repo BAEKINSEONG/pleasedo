@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Collection -->
+    <div class="recent">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title">COLLECTION</div>
+                <div class="section_subtitle">들어갈 문구좀 생각해주세요</div>
+            </div>
+        </div>
+        <div class="row recent_row">
+            <div class="col">
+                <div class="recent_slider_container">
+                    <div class="owl-carousel owl-theme recent_slider">
+                        
+                        <!-- Slide -->
+                        <div class="owl-item">
+                            <div class="recent_item">
+                                <div class="recent_item_inner">
+                                    <div class="recent_item_image">
+                                        <img src="{% static 'bluesky/images/clothing_1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="recent_item_body text-center">
+                                        <div class="recent_item_location">Adidas</div>
+                                        <div class="recent_item_title"><a href="#">EQT Jacket</a></div>
+                                        <div class="recent_item_price">₩ 2.3</div>
+                                    </div>
+                                    <div class="recent_item_footer d-flex flex-row align-items-center justify-content-start">
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_2.png' %}" alt=""></div><span>Omnipeople</span></div> <!-- 옷집 아이콘 만들어줘 -->
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_3.png' %}" alt=""></div><span>S</span></div> <!-- 치수 아이콘 만들어줘 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide -->
+                        <div class="owl-item">
+                            <div class="recent_item">
+                                <div class="recent_item_inner">
+                                    <div class="recent_item_image">
+                                        <img src="{% static 'bluesky/images/clothing_2.jpg' %}" alt="">
+                                        <div class="tag_offer property_tag"><a href="#">20% discount</a></div>
+                                    </div>
+                                    <div class="recent_item_body text-center">
+                                        <div class="recent_item_location">YSL</div>
+                                        <div class="recent_item_title"><a href="#">Black Jacket</a></div>
+                                        <div class="recent_item_price">₩ 2.3</div>
+                                    </div>
+                                    <div class="recent_item_footer d-flex flex-row align-items-center justify-content-start">
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_1.png' %}" alt=""></div><span>650 Ftsq</span></div>
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_2.png' %}" alt=""></div><span>3 Bedrooms</span></div>
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_3.png' %}" alt=""></div><span>3 Bathrooms</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide -->
+                        <div class="owl-item">
+                            <div class="recent_item">
+                                <div class="recent_item_inner">
+                                    <div class="recent_item_image">
+                                        <img src="{% static 'bluesky/images/clothing_3.jpg' %}" alt="">
+                                        <div class="tag_featured property_tag"><a href="#">30% discount</a></div>
+                                    </div>
+                                    <div class="recent_item_body text-center">
+                                        <div class="recent_item_location">Tommy Hilfiguer</div>
+                                        <div class="recent_item_title"><a href="#">Rain Jacket</a></div>
+                                        <div class="recent_item_price">₩ 2.3</div>
+                                    </div>
+                                    <div class="recent_item_footer d-flex flex-row align-items-center justify-content-start">
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_1.png' %}" alt=""></div><span>650 Ftsq</span></div>
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_2.png' %}" alt=""></div><span>3 Bedrooms</span></div>
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_3.png' %}" alt=""></div><span>3 Bathrooms</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide -->
+                        <div class="owl-item">
+                            <div class="recent_item">
+                                <div class="recent_item_inner">
+                                    <div class="recent_item_image">
+                                        <img src="{% static 'bluesky/images/clothing_1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="recent_item_body text-center">
+                                        <div class="recent_item_location">Tommy Hilfiguer</div>
+                                        <div class="recent_item_title"><a href="#">Rain Jacket</a></div>
+                                        <div class="recent_item_price">₩ 2.3</div>
+                                    </div>
+                                    <div class="recent_item_footer d-flex flex-row align-items-center justify-content-start">
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_1.png' %}" alt=""></div><span>650 Ftsq</span></div>
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_2.png' %}" alt=""></div><span>3 Bedrooms</span></div>
+                                        <div><div class="recent_icon"><img src="{% static 'bluesky/images/icon_3.png' %}" alt=""></div><span>3 Bathrooms</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                    </div>
+
+                    <div class="recent_slider_nav_container d-flex flex-row align-items-start justify-content-start">
+                        <div class="recent_slider_nav recent_slider_prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></div>
+                        <div class="recent_slider_nav recent_slider_next"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+                    </div>
+                </div>
+                <div class="button recent_button"><a href="#">see more</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
